@@ -1,0 +1,13 @@
+:root { font-family: "Microsoft YaHei", sans-serif; color: #172033; }
+body { width: 300px; margin: 0; background: #f7f9fc; }
+main { padding: 18px; }
+h1 { margin: 0 0 10px; font-size: 18px; }
+.state { margin: 0; color: #2563eb; font-weight: 700; }
+.count { margin: 8px 0 16px; font-size: 13px; }
+.count strong { font-size: 24px; color: #0f172a; }
+.controls { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+button { border: 0; border-radius: 7px; padding: 9px; background: #2563eb; color: white; cursor: pointer; font: inherit; }
+button:hover:not(:disabled) { background: #1d4ed8; }
+button:disabled { background: #cbd5e1; cursor: not-allowed; }
+.export { width: 100%; margin-top: 8px; background: #0f766e; }
+.notice { min-height: 30px; margin: 12px 0 0; color: #64748b; font-size: 12px; line-height: 1.45; }

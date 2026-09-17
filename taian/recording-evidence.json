@@ -1,0 +1,733 @@
+{
+  "schemaVersion": 1,
+  "source": "T.json",
+  "sourceSha256": "F51E35742CF3FD0680A9C669F4821319C08F1703E8F0248B7429AC7EF4541B27",
+  "analysisDate": "2026-09-11",
+  "scope": "Offline recording inspection only; no business endpoint called.",
+  "requestCount": 33,
+  "allHttp200": true,
+  "allBusinessCodeZero": true,
+  "observedHouseholdSaves": [
+    {
+      "householdAlias": "HOUSEHOLD_1",
+      "detailRequest": 8,
+      "saveRequest": 11,
+      "refreshRequest": 12,
+      "memberCount": 4,
+      "submittedMemberCount": 4,
+      "memberSetsMatch": true,
+      "elementCounts": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "pendingHouseholdsAfterSave": 3
+    },
+    {
+      "householdAlias": "HOUSEHOLD_2",
+      "detailRequest": 13,
+      "saveRequest": 16,
+      "refreshRequest": 17,
+      "memberCount": 3,
+      "submittedMemberCount": 3,
+      "memberSetsMatch": true,
+      "elementCounts": [
+        3,
+        3,
+        3
+      ],
+      "pendingHouseholdsAfterSave": 2
+    },
+    {
+      "householdAlias": "HOUSEHOLD_3",
+      "detailRequest": 18,
+      "saveRequest": 21,
+      "refreshRequest": 22,
+      "memberCount": 2,
+      "submittedMemberCount": 2,
+      "memberSetsMatch": true,
+      "elementCounts": [
+        3,
+        3
+      ],
+      "pendingHouseholdsAfterSave": 1
+    },
+    {
+      "householdAlias": "HOUSEHOLD_4",
+      "detailRequest": 23,
+      "saveRequest": 26,
+      "refreshRequest": 27,
+      "memberCount": 2,
+      "submittedMemberCount": 2,
+      "memberSetsMatch": true,
+      "elementCounts": [
+        3,
+        3
+      ],
+      "pendingHouseholdsAfterSave": 0
+    }
+  ],
+  "requests": [
+    {
+      "index": 1,
+      "method": "POST",
+      "path": "/xczx/backend/comm/v1/user/login",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "loginType",
+        "password",
+        "smsType",
+        "smsVerifyCode",
+        "userName"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    },
+    {
+      "index": 2,
+      "method": "GET",
+      "path": "/xczx/backend/mobile/village/appraise/info/list",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "page",
+        "rows"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": 0,
+      "responseDataCount": 1
+    },
+    {
+      "index": 3,
+      "method": "GET",
+      "path": "/xczx/backend/mobile/village/trustee/pulldown/list",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "villageCode"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": 4
+    },
+    {
+      "index": 4,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/appraise/info/resident/save",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "delFlag",
+        "trusteeList[0].delFlag",
+        "trusteeList[0].historyStatus",
+        "trusteeList[0].idNum",
+        "trusteeList[0].personName",
+        "trusteeList[0].pretrialStatus",
+        "trusteeList[0].selectStatus",
+        "trusteeList[1].delFlag",
+        "trusteeList[1].historyStatus",
+        "trusteeList[1].idNum",
+        "trusteeList[1].personName",
+        "trusteeList[1].pretrialStatus",
+        "trusteeList[1].selectStatus",
+        "trusteeList[2].delFlag",
+        "trusteeList[2].historyStatus",
+        "trusteeList[2].idNum",
+        "trusteeList[2].personName",
+        "trusteeList[2].pretrialStatus",
+        "trusteeList[2].selectStatus",
+        "trusteeList[3].delFlag",
+        "trusteeList[3].historyStatus",
+        "trusteeList[3].idNum",
+        "trusteeList[3].personName",
+        "trusteeList[3].pretrialStatus",
+        "trusteeList[3].selectStatus",
+        "villageCode"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    },
+    {
+      "index": 5,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/appraise/info/trustee/list",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "villageCode"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": 3
+    },
+    {
+      "index": 6,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/appraise/info/resident",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseTrusteeCode"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    },
+    {
+      "index": 7,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/appraise/info/resident/list",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseState",
+        "appraiseTrusteeCode",
+        "page",
+        "rows"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": 4,
+      "responseDataCount": 4
+    },
+    {
+      "index": 8,
+      "method": "GET",
+      "path": "/xczx/backend/mobile/village/trustee/detail/info",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseState",
+        "householderIdNumber",
+        "trusteeCode"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": 4
+    },
+    {
+      "index": 9,
+      "method": "GET",
+      "path": "/xczx/backend/mobile/village/appraise/info/type",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "code"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    },
+    {
+      "index": 10,
+      "method": "GET",
+      "path": "/xczx/backend/comm/sys/dict/items",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "code"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    },
+    {
+      "index": 11,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/trustee/detail/save",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseTrusteeCode",
+        "list[0].appraiseResidentCode",
+        "list[0].isSuitableCredit",
+        "list[0].isUnderstand",
+        "list[0].list[0].appraiseInfoElementCode",
+        "list[0].list[0].isUseElement",
+        "list[0].list[1].appraiseInfoElementCode",
+        "list[0].list[1].isUseElement",
+        "list[0].list[2].appraiseInfoElementCode",
+        "list[0].list[2].isUseElement",
+        "list[0].noSuitableCreditDesc",
+        "list[0].noSuitableCreditType",
+        "list[0].remarks",
+        "list[1].appraiseResidentCode",
+        "list[1].isSuitableCredit",
+        "list[1].isUnderstand",
+        "list[1].list[0].appraiseInfoElementCode",
+        "list[1].list[0].isUseElement",
+        "list[1].list[1].appraiseInfoElementCode",
+        "list[1].list[1].isUseElement",
+        "list[1].list[2].appraiseInfoElementCode",
+        "list[1].list[2].isUseElement",
+        "list[1].noSuitableCreditDesc",
+        "list[1].noSuitableCreditType",
+        "list[1].remarks",
+        "list[2].appraiseResidentCode",
+        "list[2].isSuitableCredit",
+        "list[2].isUnderstand",
+        "list[2].list[0].appraiseInfoElementCode",
+        "list[2].list[0].isUseElement",
+        "list[2].list[1].appraiseInfoElementCode",
+        "list[2].list[1].isUseElement",
+        "list[2].list[2].appraiseInfoElementCode",
+        "list[2].list[2].isUseElement",
+        "list[2].noSuitableCreditDesc",
+        "list[2].noSuitableCreditType",
+        "list[2].remarks",
+        "list[3].appraiseResidentCode",
+        "list[3].isSuitableCredit",
+        "list[3].isUnderstand",
+        "list[3].list[0].appraiseInfoElementCode",
+        "list[3].list[0].isUseElement",
+        "list[3].list[1].appraiseInfoElementCode",
+        "list[3].list[1].isUseElement",
+        "list[3].list[2].appraiseInfoElementCode",
+        "list[3].list[2].isUseElement",
+        "list[3].noSuitableCreditDesc",
+        "list[3].noSuitableCreditType",
+        "list[3].remarks"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    },
+    {
+      "index": 12,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/appraise/info/resident/list",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseState",
+        "appraiseTrusteeCode"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": 3,
+      "responseDataCount": 3
+    },
+    {
+      "index": 13,
+      "method": "GET",
+      "path": "/xczx/backend/mobile/village/trustee/detail/info",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseState",
+        "householderIdNumber",
+        "trusteeCode"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": 3
+    },
+    {
+      "index": 14,
+      "method": "GET",
+      "path": "/xczx/backend/mobile/village/appraise/info/type",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "code"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    },
+    {
+      "index": 15,
+      "method": "GET",
+      "path": "/xczx/backend/comm/sys/dict/items",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "code"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    },
+    {
+      "index": 16,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/trustee/detail/save",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseTrusteeCode",
+        "list[0].appraiseResidentCode",
+        "list[0].isSuitableCredit",
+        "list[0].isUnderstand",
+        "list[0].list[0].appraiseInfoElementCode",
+        "list[0].list[0].isUseElement",
+        "list[0].list[1].appraiseInfoElementCode",
+        "list[0].list[1].isUseElement",
+        "list[0].list[2].appraiseInfoElementCode",
+        "list[0].list[2].isUseElement",
+        "list[0].noSuitableCreditDesc",
+        "list[0].noSuitableCreditType",
+        "list[0].remarks",
+        "list[1].appraiseResidentCode",
+        "list[1].isSuitableCredit",
+        "list[1].isUnderstand",
+        "list[1].list[0].appraiseInfoElementCode",
+        "list[1].list[0].isUseElement",
+        "list[1].list[1].appraiseInfoElementCode",
+        "list[1].list[1].isUseElement",
+        "list[1].list[2].appraiseInfoElementCode",
+        "list[1].list[2].isUseElement",
+        "list[1].noSuitableCreditDesc",
+        "list[1].noSuitableCreditType",
+        "list[1].remarks",
+        "list[2].appraiseResidentCode",
+        "list[2].isSuitableCredit",
+        "list[2].isUnderstand",
+        "list[2].list[0].appraiseInfoElementCode",
+        "list[2].list[0].isUseElement",
+        "list[2].list[1].appraiseInfoElementCode",
+        "list[2].list[1].isUseElement",
+        "list[2].list[2].appraiseInfoElementCode",
+        "list[2].list[2].isUseElement",
+        "list[2].noSuitableCreditDesc",
+        "list[2].noSuitableCreditType",
+        "list[2].remarks"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    },
+    {
+      "index": 17,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/appraise/info/resident/list",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseState",
+        "appraiseTrusteeCode"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": 2,
+      "responseDataCount": 2
+    },
+    {
+      "index": 18,
+      "method": "GET",
+      "path": "/xczx/backend/mobile/village/trustee/detail/info",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseState",
+        "householderIdNumber",
+        "trusteeCode"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": 2
+    },
+    {
+      "index": 19,
+      "method": "GET",
+      "path": "/xczx/backend/mobile/village/appraise/info/type",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "code"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    },
+    {
+      "index": 20,
+      "method": "GET",
+      "path": "/xczx/backend/comm/sys/dict/items",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "code"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    },
+    {
+      "index": 21,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/trustee/detail/save",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseTrusteeCode",
+        "list[0].appraiseResidentCode",
+        "list[0].isSuitableCredit",
+        "list[0].isUnderstand",
+        "list[0].list[0].appraiseInfoElementCode",
+        "list[0].list[0].isUseElement",
+        "list[0].list[1].appraiseInfoElementCode",
+        "list[0].list[1].isUseElement",
+        "list[0].list[2].appraiseInfoElementCode",
+        "list[0].list[2].isUseElement",
+        "list[0].noSuitableCreditDesc",
+        "list[0].noSuitableCreditType",
+        "list[0].remarks",
+        "list[1].appraiseResidentCode",
+        "list[1].isSuitableCredit",
+        "list[1].isUnderstand",
+        "list[1].list[0].appraiseInfoElementCode",
+        "list[1].list[0].isUseElement",
+        "list[1].list[1].appraiseInfoElementCode",
+        "list[1].list[1].isUseElement",
+        "list[1].list[2].appraiseInfoElementCode",
+        "list[1].list[2].isUseElement",
+        "list[1].noSuitableCreditDesc",
+        "list[1].noSuitableCreditType",
+        "list[1].remarks"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    },
+    {
+      "index": 22,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/appraise/info/resident/list",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseState",
+        "appraiseTrusteeCode"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": 1,
+      "responseDataCount": 1
+    },
+    {
+      "index": 23,
+      "method": "GET",
+      "path": "/xczx/backend/mobile/village/trustee/detail/info",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseState",
+        "householderIdNumber",
+        "trusteeCode"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": 2
+    },
+    {
+      "index": 24,
+      "method": "GET",
+      "path": "/xczx/backend/mobile/village/appraise/info/type",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "code"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    },
+    {
+      "index": 25,
+      "method": "GET",
+      "path": "/xczx/backend/comm/sys/dict/items",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "code"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    },
+    {
+      "index": 26,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/trustee/detail/save",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseTrusteeCode",
+        "list[0].appraiseResidentCode",
+        "list[0].isSuitableCredit",
+        "list[0].isUnderstand",
+        "list[0].list[0].appraiseInfoElementCode",
+        "list[0].list[0].isUseElement",
+        "list[0].list[1].appraiseInfoElementCode",
+        "list[0].list[1].isUseElement",
+        "list[0].list[2].appraiseInfoElementCode",
+        "list[0].list[2].isUseElement",
+        "list[0].noSuitableCreditDesc",
+        "list[0].noSuitableCreditType",
+        "list[0].remarks",
+        "list[1].appraiseResidentCode",
+        "list[1].isSuitableCredit",
+        "list[1].isUnderstand",
+        "list[1].list[0].appraiseInfoElementCode",
+        "list[1].list[0].isUseElement",
+        "list[1].list[1].appraiseInfoElementCode",
+        "list[1].list[1].isUseElement",
+        "list[1].list[2].appraiseInfoElementCode",
+        "list[1].list[2].isUseElement",
+        "list[1].noSuitableCreditDesc",
+        "list[1].noSuitableCreditType",
+        "list[1].remarks"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    },
+    {
+      "index": 27,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/appraise/info/resident/list",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseState",
+        "appraiseTrusteeCode"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": 0,
+      "responseDataCount": 0
+    },
+    {
+      "index": 28,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/appraise/info/resident/save",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "trusteeList[0].historyStatus",
+        "trusteeList[0].idNum",
+        "trusteeList[0].personName",
+        "trusteeList[0].pretrialStatus",
+        "trusteeList[0].selectStatus",
+        "trusteeList[1].historyStatus",
+        "trusteeList[1].idNum",
+        "trusteeList[1].personName",
+        "trusteeList[1].pretrialStatus",
+        "trusteeList[1].selectStatus",
+        "trusteeList[2].historyStatus",
+        "trusteeList[2].idNum",
+        "trusteeList[2].personName",
+        "trusteeList[2].pretrialStatus",
+        "trusteeList[2].selectStatus",
+        "villageCode"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    },
+    {
+      "index": 29,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/appraise/info/trustee/list",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "villageCode"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": 3
+    },
+    {
+      "index": 30,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/appraise/info/resident",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseTrusteeCode"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    },
+    {
+      "index": 31,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/appraise/info/resident/list",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseState",
+        "appraiseTrusteeCode",
+        "page",
+        "rows"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": 0,
+      "responseDataCount": 0
+    },
+    {
+      "index": 32,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/appraise/info/resident/list",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseState",
+        "appraiseTrusteeCode",
+        "page",
+        "rows"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": 4,
+      "responseDataCount": 4
+    },
+    {
+      "index": 33,
+      "method": "POST",
+      "path": "/xczx/backend/mobile/village/appraise/info/resident",
+      "contentType": "application/x-www-form-urlencoded",
+      "parameterNames": [
+        "appraiseInfoCode",
+        "appraiseTrusteeCode"
+      ],
+      "httpStatus": 200,
+      "businessCode": "0",
+      "recordsTotal": null,
+      "responseDataCount": null
+    }
+  ],
+  "unverifiedContracts": [
+    "reviewPersonCount semantics",
+    "selectStatus meanings and roster replacement behavior",
+    "completed detail readback parameters",
+    "false branch validation and null handling",
+    "server write idempotency and transaction boundaries",
+    "target environment authentication",
+    "villageCode source and pagination stability",
+    "whole appraisal final submission and approval"
+  ]
+}

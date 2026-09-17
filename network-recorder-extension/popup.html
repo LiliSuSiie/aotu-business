@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="popup.css"></head>
+  <body>
+    <main>
+      <h1>接口录制器</h1>
+      <p id="state" class="state">未开始</p>
+      <p class="count"><strong id="count">0</strong> 条业务请求已录制</p>
+      <div class="controls">
+        <button id="start">开始</button><button id="pause">暂停</button><button id="resume">继续</button><button id="stop">停止</button>
+      </div>
+      <button id="export" class="export">导出 JSON</button>
+      <p id="notice" class="notice">仅捕获当前标签页的 Fetch/XHR；静态资源和心跳请求会自动过滤。</p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

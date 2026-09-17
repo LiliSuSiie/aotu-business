@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "接口录制器",
+  "version": "1.0.0",
+  "description": "录制当前页面的 Fetch/XHR 请求与响应，并导出为 JSON。",
+  "permissions": ["activeTab", "debugger", "downloads", "storage", "tabs"],
+  "action": {
+    "default_title": "接口录制器",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  }
+}

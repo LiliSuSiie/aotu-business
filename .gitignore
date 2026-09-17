@@ -1,0 +1,30 @@
+# Local credentials and environment configuration
+**/*.private.json
+**/*.local.json
+.env
+.env.*
+!.env.example
+*.cnf
+*.pem
+*.key
+
+# Raw business recordings and private execution data
+/taian/T.json
+/eeds/进件.json
+**/recordings/*.json
+**/recordings/*.har
+**/state/
+**/reports/
+*.log
+
+# Generated dependencies and caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+node_modules/
+dist/
+build/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,32 @@
+{
+  "baseUrl": "https://test.example.com",
+  "authorization": "replace-with-test-token",
+  "enterpriseCode": "10000",
+  "productCode": "replace-with-test-product-code",
+  "customer": {
+    "displayName": "ATRC_TEST_USER",
+    "name": "replace-with-authorized-test-name",
+    "idCardNo": "replace-with-authorized-test-id-card",
+    "phoneNumber": "replace-with-authorized-test-phone",
+    "idImgBase64": "",
+    "cipher": {
+      "name": "replace-with-ciphertext",
+      "idCardNo": "replace-with-ciphertext",
+      "phoneNumber": "replace-with-ciphertext",
+      "contactName": "replace-with-ciphertext",
+      "contactPhone": "replace-with-ciphertext"
+    }
+  },
+  "application": {
+    "verifyCode": "123456",
+    "applyAmount": "200000",
+    "loanUse": "2",
+    "loanUseDesc": "O8010"
+  },
+  "db": {
+    "enabled": false,
+    "mysqlPath": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe",
+    "defaultsExtraFile": "C:\\secure-path\\test-db.cnf",
+    "database": "replace-with-test-database"
+  }
+}

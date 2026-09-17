@@ -1,0 +1,71 @@
+初始方案：
+● 任务开始，每日夜间固定时间执行跑批
+  ○ 生成当天唯一批次号
+  ○ 任务状态，初始化为执行中
+● 客户筛选
+  ○ 分页查询
+  ○ 合同表：授信合同90个自然天内到期的，合同状态有效的
+    ■ 查询条件伪代码
+      ● status = 'EFFECTIVE' AND maturity >= yyyy/MM/dd(今天) AND maturity <= yyyy/MM/dd(今天+90天) AND ISDEL = 0
+    ■ eedsxd_business_contract 取status字段为EFFECTIVE的
+      ● INEFFECTIVE 未生效
+      ● INVALID 已失效
+      ● CANCELLED 已作废
+      ● EFFECTIVE 已生效
+    ■ eedsxd_business_contract 到期日期 maturity
+    ■ eedsxd_business_contract 合同编号 serialno
+    ■ eedsxd_business_contract 证件号码
+      ●  合同表没有证件号码字段，需要通过oldlcno 信用证编号（推送流水号） ，提取进件id（oldlcno长度大于等于20，从第15位开始截取到末尾为进件id），再根据进件id查询进件表获取证件号码
+● 数据入库
+  ○ 条件1，eedsxd_business_contract表customerid不为空的
+  ○ 条件2，通过customerid在eedsxd_customer_info查询出的mfcustomerid不为空的
+  ○ 条件3，通过eedsxd_business_contract的oldlcno可以正常提取到进件id的
+  ○ 条件4，通过进件id查询loan_apply_info不为空的且申请类型为非续授信loanType不是2的
+  ○ 条件5，通过loan_apply_info获取的ID_CARD_NO证件号码在白名单customer_white_list查询有数据的
+  ○ 数据入库逻辑，插入renew_credit_customer表，以证件号码和合同号在表中唯一
+● 重跑规则
+  ○ 查询新建的续授信客户表
+    ■ 33个月内不重复跑批
+    ■ 超年龄上限的不重新跑
+      ● 确认状态更新为，待确认
+    ■ 超年龄下限的重新跑
+    ■ 非有效白名单的重复跑
+    ■ 模型异常和模型拒绝的重跑
+● 基础规则校验
+  ○ 年龄校验，25~64 周岁（包含边界）
+    ■ 年龄下限校验
+    ■ 年龄上限校验
+  ○ 白名单状态是否有效
+    ■ 无效，取白名单无效原因
+  ○ 校验不通过，准入拒绝
+●  续授信模型执行  
+  ○ 执行续授信模型
+    ■ M01.个人准入模型（续贷）
+    ■ M02.关联人预审模型（续贷）
+    ■ M03.个人征信.征信准入模型（续贷）
+    ■ M05.综合授信模型（续贷-批量跑批）
+  ○ 模型通过
+    ■ 获取模型额度和利率，更新到renew_credit_customer的RENEW_CREDIT_AMOUNT和RENEW_CREDIT_RATE
+    ■ 确认状态更新为，待确认
+  ○ 模型拒绝、模型异常、模型审批中
+● 任务异常
+  ○ 任务状态，更新为异常，对应batch_task_log表
+    ■ 跑批任务表 batch_task_log 
+      ● `STATUS` '任务状态 initialize-初始化 executing-执行中 exception-异常 finish-完成'
+  ○ 短信通知技术人员
+  ○ 任务异常中断可重跑，手动触发入口
+  ○ 对应具体的异常数据状态更新为异常，对应renew_credit_customer表
+    ■ 续授信客户表 renew_credit_customer 
+      ● `CUSTOMER_STATUS` '客户状态 1-准入拒绝 2-模型拒绝 3-模型通过 4-模型审批中 999-模型异常'
+      ● `CUSTOMER_STATUS_DESC` '客户状态描述'
+● 任务完成
+  ○ 写入续授信客户列表
+  ○ 任务状态，更新为成功
+  ○ 续授信列表展示结果
+  
+  
+方案优化：
+1、续授信客户跑批时，每次调用模型前都生成唯一code，在renew_credit_customer表基础上增加renew_credit_customer_batch表，调用模型前插入数据生成唯一code，renew_credit_customer的code与renew_credit_customer_batch表的code进行一对多关联，并增加批次日期，按批次日期+code；
+2、将调用决策模型的code、model_record的调用记录的code，由renew_credit_customer的code更换为renew_credit_customer_batch的code
+3、将综合授信模型写入loan_model_result表的code，由renew_credit_customer的code更换为renew_credit_customer_batch的code
+4、每次模型调用后，将renew_credit_customer的模型调用结果同步更新到renew_credit_customer_batch中
