@@ -41,7 +41,13 @@ def load_config(path):
         if not isinstance(config.get(key), str) or not config[key].strip():
             raise RuntimeError('请填写配置中的 %s；账号密码使用明文，无需手工加密。' % key)
     config.setdefault('baseUrl', 'http://47.98.151.170:8085/xczx/backend')
-    url = urllib.parse.urlsplit(config['baseUrl'])
+    if not isinstance(config['baseUrl'], str):
+        raise RuntimeError('baseUrl 必须是 HTTP(S) 服务地址字符串。')
+    try:
+        url = urllib.parse.urlsplit(config['baseUrl'])
+        url.port
+    except ValueError:
+        raise RuntimeError('baseUrl 地址格式不正确。') from None
     if url.scheme not in ('http', 'https') or not url.netloc or url.username or url.password or url.query or url.fragment:
         raise RuntimeError('baseUrl 必须是无凭证、无查询参数的 HTTP(S) 服务地址。')
     config['baseUrl'] = config['baseUrl'].rstrip('/')
@@ -108,13 +114,15 @@ class Client:
             with self.opener.open(request, timeout=25) as response:
                 raw = response.read()
                 result = json.loads(raw)
+                if not isinstance(result, dict):
+                    raise RuntimeError('接口 %s 返回格式异常，已停止。' % path)
                 event.update(http=response.status, businessCode=result.get('code'))
                 if index != 1:
                     event.update(requestId=result.get('requestId'), responseSha256=hashlib.sha256(raw).hexdigest())
                 if response.status != 200 or str(result.get('code')) != '0':
                     if index == 1:
                         raise RuntimeError('登录失败：请核对账号密码；若该环境要求短信验证码，请填写有效 smsVerifyCode。不会重试或复用旧 Token。')
-                    raise RuntimeError('业务接口失败，已停止；请查看审计业务码，写请求不会自动重试。')
+                    raise RuntimeError('业务接口 %s 返回失败，请核对会话和业务状态；写请求不会自动重试。' % path)
                 if write:
                     self.writes += 1
                 return result
@@ -123,7 +131,7 @@ class Client:
             raise
         except Exception as exc:
             event['errorType'] = type(exc).__name__
-            raise RuntimeError('接口请求失败（%s），已停止，不自动重试。' % type(exc).__name__) from None
+            raise RuntimeError('接口 %s 请求失败（%s），已停止，不自动重试。' % (path, type(exc).__name__)) from None
         finally:
             event['elapsedMs'] = round((time.monotonic() - start) * 1000)
             self.events.append(event)
@@ -144,8 +152,10 @@ def batch_list(client):
         if not rows:
             return result
         for row in rows:
+            if not isinstance(row, dict):
+                raise RuntimeError('批次列表条目格式异常。')
             code = row.get('code')
-            if not code or code in seen:
+            if not isinstance(code, str) or not code.strip() or code in seen:
                 raise RuntimeError('批次分页出现缺失或重复 code，请重新查询。')
             seen.add(code)
             result.append(row)
@@ -171,6 +181,20 @@ def choose(title, rows, label, input_fn=input, output=print):
         matches = [row for row in rows if row.get('code') == value]
         if len(matches) == 1:
             return matches[0]
-        if value.isdecimal() and 1 <= int(value) <= len(rows):
+        if value.isdecimal() and len(value) <= 10 and 1 <= int(value) <= len(rows):
             return rows[int(value)-1]
         output('输入无效，请选择列表中的序号或完整 code。')
+
+
+def ask_continue(input_fn=input, output=print):
+    while True:
+        try:
+            value = input_fn('是否继续选择下一名评议员？（y 继续 / n 结束）：').strip().lower()
+        except EOFError:
+            output('终端输入已结束，已保留进度。')
+            return False
+        if value in ('y', 'yes', '是', '继续'):
+            return True
+        if value in ('n', 'no', 'q', '否', '结束'):
+            return False
+        output('请输入 y 继续，或 n 结束；不会自动选择评议员。')
